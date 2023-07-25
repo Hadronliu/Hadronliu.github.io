@@ -1,1 +1,9 @@
-mathjax: true
+markdown: kramdown
+kramdown:
+  math_engine: mathjax
+  mathjax_config:
+    tex2jax:
+      {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      }

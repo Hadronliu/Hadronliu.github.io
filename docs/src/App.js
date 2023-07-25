@@ -29,7 +29,15 @@ export default function App () {
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
       <Box position={[-1.2, 0, 0]} />
+      <Box position={[-1.2, 1, 0]} />
+      <Box position={[-1.2, 2, 0]} />
+      <Box position={[-2.2, 0, 1]} />
+      <Box position={[-3.2, 0, 1]} />
       <Box position={[1.2, 0, 0]} />
+      <Box position={[1.2, 1, 0]} />
+      <Box position={[1.2, 2, 0]} />
+      <Box position={[2.2, 0, 1]} />
+      <Box position={[3.2, 0, 2]} />
     </Canvas>
   )
 }

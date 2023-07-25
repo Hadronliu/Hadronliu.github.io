@@ -1,31 +1,35 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
+import { Canvas, useFrame } from '@react-three/fiber'
 
-function Book (props) {
+function Box (props) {
+  const mesh = useRef()
+
+  const [hovered, setHover] = useState(false)
+  const [active, setActive] = useState(false)
+
+  useFrame((state, delta) => (mesh.current.rotation.x += 0.01))
+
   return (
-    <div className="book">
-      <div>
-        <h2>{props.title}</h2>
-        <p>{props.author}</p>
-        <p>{props.description}</p>
-        <p>出版时间:{props.pubdate}</p>
-        <p>评分:{props.rating}</p>
-      </div>
-    </div>
+    <mesh
+      {...props}
+      ref={mesh}
+      scale={active ? 1.5 : 1}
+      onClick={() => setActive(!active)}
+      onPointerOver={() => setHover(true)}
+      onPointerOut={() => setHover(false)}>
+      <boxGeometry args={[1, 1, 1]} />
+      <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
+    </mesh>
   )
 }
 
-function App () {
+export default function App () {
   return (
-    <div className="app">
-      <Book
-        title="三体"
-        author="刘慈欣"
-        description="漫长的黑暗静待黎明到来......"
-        pubdate="2008-1"
-        rating={4.5}
-      />
-    </div>
+    <Canvas>
+      <ambientLight />
+      <pointLight position={[10, 10, 10]} />
+      <Box position={[-1.2, 0, 0]} />
+      <Box position={[1.2, 0, 0]} />
+    </Canvas>
   )
 }
-
-export default App
